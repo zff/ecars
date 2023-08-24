@@ -34,6 +34,7 @@ conn.login(SF_USERNAME, SF_PASSWORD + SF_TOKEN, (err, res) => {
     if (err) {
         logger.error(err);
     }
+    console.log("@@@@@conn.login--res=====",res);
 });
 
 webpush.setVapidDetails(`mailto:${email}`, vapidPublicKey, vapidPrivateKey);
@@ -44,12 +45,14 @@ function getPublicKey(req, res) {
 }
 
 async function createSubscription(req, res, next) {
+    console.log("@@@@@api.js--48---createSubscription--req.body=====",req.body);
     const graph = constructGraph(req.body);
     try {
         const resp = await conn.requestPost(
             '/services/data/v56.0/composite/graph',
             graph
         );
+        console.log("@@@@@api.js--55---createSubscription--resp=====",resp);
         // Note, we only expect one graph in the response for the purpose of this
         // demo, so we're accessing it directly via [0].
         if (!resp.graphs[0].isSuccessful) {
@@ -57,9 +60,10 @@ async function createSubscription(req, res, next) {
             req.log.error(resp.graphs[0]);
             throw new Error('Composite API request failed');
         }
-
+        
         const leadId =
             resp.graphs[0].graphResponse.compositeResponse[0].body.id;
+        console.log("@@@@@api.js--66---createSubscription--leadId=====",leadId);
         await client.query(
             'INSERT INTO ecars_subscriptions(lead_record_id, endpoint, keys_p256dh, keys_auth, notification_sent) VALUES($1,$2,$3,$4,$5)',
             [

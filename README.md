@@ -47,7 +47,7 @@ The `ecarsDeploy.js` script will create and deploy code to a Salesforce scratch 
 ```console
 $ sf org login web -d -a DevHub  # Authenticate using your Dev Hub org credentials
 $ heroku login  # Login with your Heroku account (or create one)
-$ git clone https://github.com/trailheadapps/ecars.git
+$ git clone https://github.com/zff/ecars.git
 $ cd ecars/scripts
 $ npm install
 $ cd ..
@@ -100,13 +100,13 @@ The below steps do everything the [Automated Deploy](#automated-deploy) does. It
 
     1. Click the Heroku Deploy Button to deploy the application to Heroku. Provide a unique application name to be used as [MQTT APP NAME] below. Leave all other inputs as the defaults.
 
-        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/trailheadapps/ecars/tree/main&env[APP_BASE]=apps/ecars-mqtt-broker)
+        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zff/ecars/tree/main&env[APP_BASE]=apps/ecars-mqtt-broker)
 
 1. Deploy and configure the **Heroku Streaming application**
 
     1. Click the Heroku Deploy Button to deploy the streaming data application to Heroku. Provide a unique application name to be used as [STREAMING APP NAME] below. Leave all other inputs as the defaults.
 
-        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/trailheadapps/ecars/tree/main&env[APP_BASE]=apps/ecars-realtime)
+        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zff/ecars/tree/main&env[APP_BASE]=apps/ecars-realtime)
 
     1. Create a Heroku Postgres database and attach it to the application
 
@@ -138,7 +138,7 @@ The below steps do everything the [Automated Deploy](#automated-deploy) does. It
 
     1. Click the Heroku Deploy Button to deploy the progressive web application to Heroku. Provide a unique application name to be used as [PWA NAME] below. Leave all other inputs as the defaults.
 
-        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/trailheadapps/ecars/tree/main&env[APP_BASE]=apps/ecars-pwa)
+        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zff/ecars/tree/main&env[APP_BASE]=apps/ecars-pwa)
 
     1. Create a Heroku Postgres database and attach it to the application
 
@@ -168,7 +168,7 @@ The below steps do everything the [Automated Deploy](#automated-deploy) does. It
 
     1. Click the Heroku Deploy Button to deploy the microservices application to Heroku. Provide a unique application name to be used as [MICROSERVICES APP NAME] below. Leave all other inputs as the defaults.
 
-        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/trailheadapps/ecars/tree/main&env[APP_BASE]=apps/ecars-services)
+        [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zff/ecars/tree/main&env[APP_BASE]=apps/ecars-services)
 
     1. Attach [STREAMING APP NAME]'s Heroku Postgres database to the Microservices application.
 
@@ -233,7 +233,7 @@ $ heroku apps:destroy --app=[MICROSERVICES APP NAME]
 
 ### Archive IoT Car Diagnostic Data with Postgres
 
-Looking at real-time car diagnostic data is useful, but often it's useful to be able to look at historical data. You can persist this data to a Postgres database by enabling the [`sensor-persistence` process type](https://github.com/trailheadapps/ecars/blob/main/apps/ecars-realtime/Procfile).
+Looking at real-time car diagnostic data is useful, but often it's useful to be able to look at historical data. You can persist this data to a Postgres database by enabling the [`sensor-persistence` process type](https://github.com/zff/ecars/blob/main/apps/ecars-realtime/Procfile).
 
 Note that we have not enabled this by default because it will quickly consume the maximum 10,000 rows allowed in the `mini` Heroku Postgres plan. If you enable the `sensor-persistence` process type for more than a few hours, you should use a larger Heroku Postgres plan.
 
